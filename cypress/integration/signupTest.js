@@ -8,100 +8,152 @@ context('Validation of sign up form', () => {
 
     //Positive scenario 
     describe("Positive scenario",()=>{
-        it.only("Sucessful submission of form",()=>{
-            cy.get('#fname').type("Justice");
-            cy.get('#lname-div > input').type("Ajah");
-            cy.get('#type').select("Admin");
+        it.only("Sucessful submission of form for Admins",()=>{
+            cy.get('#name').type("Justice");
             cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get('#type').select("Admin");
             cy.get('#pass').type("qwertY.899");
-            cy.get('#confirmPass').type("qwertY.899")
             cy.get('#btn-submit').click()
         })
-    })
+
+        it.only("Sucessful submission of form for customers",()=>{
+            cy.get('#name').type("Justice");
+            cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get('#type').select("Customer");
+            cy.get('#pass').type("qwertY.899");
+            cy.get('#btn-submit').click()
+        })
+    });
 
 
-    
-
-    
-    describe("Negative scenario. When one or more fields are left empty", ()=>{    
-    
-    
-    
-        it("Should not submit when all fields are empty",()=>{
-            cy.visit('http://localhost:90/mywebFolders/SignUpPage/')
+     //negative scenario 
+    describe("Negative Scenarios", ()=>{ 
+        it.only("Should not submit when all fields are left empty",()=>{
             cy.get('#btn-submit').click();
         });
-    
-        it("Should not submit sucessfully with the ommission of the first name field",()=>{
-            cy.visit('http://localhost:90/mywebFolders/SignUpPage/');
-            // cy.get('#fname').type("Justice");
-            cy.get('#lname-div > input').type("Ajah");
-            cy.get('#type').select("Admin");
-            cy.get('#email').type("justice.ajah@amiltech.org")
-            cy.get('#pass').type("qwertY.899");
-            cy.get('#confirmPass').type("qwertY.899")
-            cy.get('#btn-submit').click()
-        })
-    
-        it("Should not submit sucessfully with the ommission of the last name field",()=>{
-            cy.visit('http://localhost:90/mywebFolders/SignUpPage/')
-            cy.get('#fname').type("Justice");
-            // cy.get('#lname-div > input').type("Ajah");
-            cy.get('#type').select("Admin");
-            cy.get('#email').type("justice.ajah@amiltech.org")
-            cy.get('#pass').type("qwertY.899");
-            cy.get('#confirmPass').type("qwertY.899")
-            cy.get('#btn-submit').click()
-        })
-    
-        it("Should not submit sucessfully with the ommission of an account type",()=>{
-            cy.visit('http://localhost:90/mywebFolders/SignUpPage/')
-            cy.get('#fname').type("Justice");;
-            // cy.get('#type').select("Admin");
-            cy.get('#email').type("justice.ajah@amiltech.org")
-            cy.get('#pass').type("qwertY.899");
-            cy.get('#confirmPass').type("qwertY.899")
-            cy.get('#btn-submit').click()
-        })
-    
-        it("Should not submit sucessfully with the ommission of an email",()=>{
-            cy.visit('http://localhost:90/mywebFolders/SignUpPage/')
-            cy.get('#fname').type("Justice");
-            cy.get('#lname-div > input').type("Ajah");
-            cy.get('#type').select("Admin");
-            // cy.get('#email').type("justice.ajah@amiltech.org")
-            cy.get('#pass').type("qwertY.899");
-            cy.get('#confirmPass').type("qwertY.899")
-            cy.get('#btn-submit').click()
-        })
-    
-    
-        it("Should not submit sucessfully with the ommission of the password field",()=>{
-            cy.visit('http://localhost:90/mywebFolders/SignUpPage/')
-            cy.get('#fname').type("Justice");
-            cy.get('#lname-div > input').type("Ajah");
-            cy.get('#type').select("Admin");
-            cy.get('#email').type("justice.ajah@amiltech.org")
-            // cy.get('#pass').type("qwertY.899");
-            cy.get('#confirmPass').type("qwertY.899")
-            cy.get('#btn-submit').click()
-        })
-    
-        it("Should not submit sucessfully when confirm password is empty",()=>{
-            cy.visit('http://localhost:90/mywebFolders/SignUpPage/')
-            cy.get('#fname').type("Justice");
-            cy.get('#lname-div > input').type("Ajah");
-            cy.get('#type').select("Admin");
-            cy.get('#email').type("justice.ajah@amiltech.org")
-            cy.get('#pass').type("qwertY.899");
-            // cy.get('#confirmPass').type("qwertY.899")
-            cy.get('#btn-submit').click()
-        })
-    
         
+        it.only("Should not submit when the name field is empty",()=>{
+            cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get('#type').select("Admin");
+            cy.get('#pass').type("qwertY.899");
+            cy.get('#btn-submit').click();
+        })
+
+        it.only("Should not submit when the email field is empty",()=>{
+            cy.get('#name').type("Justice");
+            cy.get('#type').select("Admin");
+            cy.get('#pass').type("qwertY.899");
+            cy.get('#btn-submit').click();
+        })
+
+        it.only("A default account of customer should be selected unless otherwise",()=>{
+            cy.get('#name').type("Justice");
+            cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get('#pass').type("qwertY.899");
+            cy.get('#btn-submit').click();
+        })
+
+        it.only("Should not submit when password is empty",()=>{
+            cy.get('#name').type("Justice");
+            cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get('#type').select("Admin");
+            cy.get('#btn-submit').click();
+        })
+
+
+    
+        it.only("Password should show when toggled ",()=>{
+            cy.get('#pass').type("qwertY.899");
+            cy.get('#togglePassword').click();
+            cy.get("#pass").should('have.attr','type','text')
+            cy.wait(2000)
+
+
+           
+        })
+
+        it.only("Password should hide when the eye icon is clicked",()=>{
+            
+            cy.get('#togglePassword').click();
+            cy.get('#pass').type("qwertY.899");
+            cy.wait(3000);
+            cy.get('#togglePassword').click();
+            cy.get("#pass").should('have.attr','type','password');
+           
+        });
+
+        it.only("Should not submit when an invalid email is inputed",()=>{
+            cy.get('#name').type("Justice");
+            cy.get('#email').type("justice.ajahamiltech.org")
+            cy.get('#type').select("Admin");
+            cy.get('#pass').type("qwertY.899");
+            cy.get('#btn-submit').click();  
+        });
+
+
+        it.only("Should show an error message when a wrong email is inserted",()=>{
+            cy.get('#name').type("Justice");
+            cy.get('#email').type("justice.ajahamiltech.org")
+            cy.get('#type').select("Admin");
+            cy.get('#pass').type("qwertY.899");
+            cy.get('#btn-submit').click();  
+            cy.get('.email-container > .hidden').should("have.text","Enter a valid email");
+        });
        
-       
-    })
+      
+
+        it.only("Password should contain an error message",()=>{
+            cy.get('#name').type("Justice");
+            cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get('#type').select("Admin");
+            cy.get('#pass').type("qwert.899");
+            cy.get('#btn-submit').click();  
+            cy.get('.pass-container > p').contains("6-12");
+        });
+
+          //email requirements
+          it.only("The password must be at least 6 characters long",()=>{
+            cy.get('#name').type("Justice");
+            cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get('#type').select("Admin");
+            cy.get('#pass').type("qY/er1");
+            cy.get('#btn-submit').click();  
+        });
+
+        it.only("Should submit when password characters is is between 6-12",()=>{
+            cy.get('#name').type("Justice");
+            cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get('#type').select("Admin");
+            cy.get('#pass').type("qY/e1lll1");
+            cy.get('#btn-submit').click();  
+        });
+
+        it.only("Should fail to submit when password is less than 6 characters",()=>{
+            cy.get('#name').type("Justice");
+            cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get('#type').select("Admin");
+            cy.get('#pass').type("qY/e1");
+            cy.get('#btn-submit').click();  
+        });
+
+        it.only("Should fail to submit when password is greater than 12 characters",()=>{
+            cy.get('#name').type("Justice");
+            cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get('#type').select("Admin");
+            cy.get('#pass').type("qY/e1lll12eve");
+            cy.get('#btn-submit').click();  
+        });
+
+        it.only("Should fail to submit when password does not contain atleast 1 capital letter ",()=>{
+            cy.get('#name').type("Justice");
+            cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get('#type').select("Admin");
+            cy.get('#pass').type("qY/e1lll12eve");
+            cy.get('#btn-submit').click();  
+        });
+    });
+    
+
 
    
     

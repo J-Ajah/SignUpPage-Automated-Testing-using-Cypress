@@ -42,6 +42,10 @@ const validate = ()=> {
         if(person.name != ""){
            let text = fields[0].parentElement.nextElementSibling;
            text.style.display ="none";
+           fields[0].style.border = "solid 0.8px rgb(207, 206, 206)";
+        }
+        else{
+           return false;
         }
           
         //validates that the email is a valid email 
@@ -97,6 +101,7 @@ document.querySelector("#btn-submit").addEventListener("click",function(e){
 function showMessage(elem){
   let tag = elem.parentElement.nextElementSibling;
   tag.style.display ="block";
+  elem.style.borderColor = "red";
   return false;
 }
 
