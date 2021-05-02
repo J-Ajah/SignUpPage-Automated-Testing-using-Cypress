@@ -1,214 +1,152 @@
 html, *{
-    margin:0;
     padding: 0;
-}
-.wrapper{
+    margin: 0;
     position: relative;
-    width: 100vw;
-    height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    background-color: rgb(76, 76, 77);
+    font-size: 16px;
 }
-
 a{
-    cursor: pointer;
-    color: #12F8E1;
+    color: cyan;
 }
 
-
-
-.signup-form{
-   width: auto;
-   height: auto;
-   position: absolute;
-   top:50%;
-   left: 50%;
-   background-color: white;
-   transform: translate(-50%,-50%);
-   /* border: solid 1px black; */
-   border-radius: 0px 50px  0px 50px;
-   /* padding: 30px; */
-   box-shadow: 0.8px 1px  5px rgb(148, 147, 147);
+.wrapper{
+    width: 60%;
+    height: auto;
+    position: absolute;
+    background-color: rgb(252, 252, 252);
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .caption{
-    width: 100%;
-    background-color: rgb(8, 72, 192);
+    background-color: rgb(43, 69, 214);
+    border-radius: 10px 10px 0px 0px;
     text-align: center;
     color: white;
-    border-radius: 0px 50px  0px 0px;
-    padding-bottom: .625rem;
-    padding-top: .625rem;
-    font-size: 1.0625rem;
-    /* border-radius: 0px 20px 0px 20px 0px; */
-}
-.form{
-    padding-top: 20px;
+    font-size:1.1rem;
+    padding: 10px 0px;
 }
 
-.names, .email-pass, .confirm-pass-div{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 0 1.8em;
+.caption h1{
+    font-size: 1.5rem;
 }
 
-.names div, .confirm-pass-div, .email-pass div{
-    margin:20px;
-}
-
-.right{
-    margin-right: 1.25rem;
-    position: relative;
-    right: 17px;
-}
-.pass-word{
-    width: 100%;
-    cursor: pointer;
-    margin-left: 1.25rem;
-    
+input,select{
+    border: none;
+    outline: none;
+    padding: 4px 10px;
+    width: 90%;
+    border-radius: 7px;
+    border: solid 0.8px rgb(207, 206, 206);
 }
 
 label{
-    position: relative;
-    bottom: 10px;
-    padding-top: 10px;
-    font-size:larger;
+    font-weight: bold;
+    color: rgb(46, 46, 46);
 }
 
-input{
-    width: 100%;
-    padding: .400rem;
-    padding-left: 10px;
-    max-width: 16.125rem;
-    border: solid 1px rgb(26, 25, 25);
-    font-size: large;
-    border-radius: 9px;
-    outline: none;
-}
-
-#pass,#confirmPass{
-    width: 80%;
-    max-width: 16.125rem;
-}
-
-
-select{
-    padding: .400rem;
-    width: 12.125rem;
-    font-size: 1.1rem;
-    border-radius: 10px;
-    outline: none;
-}
 
 input:focus{
-    border: solid 3px blue;
-    transition: 0.1s ease-in;
-
+    border-color: rgb(168, 168, 238);
 }
 
-.btn-subDiv{
-    position: absolute;
-    bottom:0%;
-    left: 50%;
-    transform: translate(-50%,-50%); 
+.container1{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-sizing: content-box;
 }
 
-.confirm-pass-div{
-    padding-bottom: 100px;
-    margin:10 40px;
+.name-container,.email-container,.select-container,.pass-container{
+    box-sizing: content-box;
+    width: 90%;
+    padding: 15px 20px;
 }
 
-.btn-subDiv > p{
-    padding-bottom: 10px;
+.name-div, .email-div,.select-div, .pass-div{
+    border-bottom: 0px solid black;
+    width: auto;
+    /* border-radius: 10px; */
 }
 
-.btn-subDiv > button{
-    position: relative;
-     padding: 7px 7px;
-     font-size: 1.2rem;
-     font-weight: bold;
-     border: none;
-     cursor: pointer;
-     background-color: rgb(8, 72, 192);
-     color: white;
-     outline: none;
-     left: 20%;
-     border-radius: 7px;
-     transition: 0.5s ease-out;
-  
+.btn-div{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 15px;
 }
 
-.btn-subDiv > button:hover{
-    background-color: rgb(8, 133, 243);
+.btn-div button{
+    padding: 5px 7px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: rgb(43, 69, 214);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.5s ease-out;
+}
+
+.btn-div button:hover{
+    border: solid 1px rgb(66, 65, 65);
+    background-color: rgba(5, 35, 209, 0.808);
+    color: rgb(235, 235, 235);
     transition: 0.5s ease-in;
-    color: black;
-    border: solid 1px black;
 }
 
+.container1 p{
+    color: rgb(236, 11, 11);
+    text-align: center;
+    font-size: 16px;
+}
 
-.hide{
+.hidden{
     display: none;
 }
 
-.color{
-    color:red;
-    font-size: 1.1rem;
-    text-align: center;
-}
 .show{
     display: block;
 }
 
-
-span{
-    position: relative;
-    text-align: center;
-    width: 100%;
-    margin-left: 110px;
-    color: rgb(41, 160, 71);
-}
-
-.sucessMsg{
-     text-align: center;
-    padding: 100px;
-    border-radius: 40px;
-}
-
-#pass-erorr{
-    width: 80%;
+.check{
+    width: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 
-
-/* Responsive deisgn */
-
-@media screen and (max-width:1459px) {
-    .right label{
-        position:relative;
-        left:40px;
-     
+@media screen  and (max-width:750px){
+    .container1{
+        display: block;
+    }
+    label{
+        margin-bottom: 12px;
     }
 
-    span{
-        color: white;
+    input{
+        max-width: 300px;
     }
 
-    .sucessMsg {
-        position: fixed;
-        width: 300px;
-        height: 150px;
-        background-color: rgb(8, 133, 243);
-        color: white;
-        left: 50%;
-        right: 50%;
-        bottom: 50%;
-        transform: translate(-50%,50%);
+    .name-container,.email-container,.select-container,.pass-container{
+        box-sizing: border-box;
         text-align: center;
-        padding: 0;
-        font-size:12px;
-        align-items: center;
-
-        padding-right: 0px;
+        margin: auto;
+        width: 100%;
+        padding: 10px;
     }
+
+    .wrapper{
+        height: auto;
+    }
+
+    .btn-div{
+        margin-bottom: 15px;
+    }
+
 }

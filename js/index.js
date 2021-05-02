@@ -1,18 +1,15 @@
 
 let person={
-    fname:"" ,
-    lname: "",
+    name: "",
     email : "",
     password : "",
-    confirmPass: "",
     type: ""
 }
 
 
 const togglePass = document.querySelector('#togglePassword');
-const togglePass2 = document.querySelector('#togglePassword2')
 const password = document.querySelector('#pass');
-const confirmPass = document.querySelector('#confirmPass');
+
 
 
 
@@ -21,28 +18,46 @@ const validate = ()=> {
      let fields = Array.from(document.querySelectorAll("input"));
      let  select = document.querySelector('#type');
 
-     let errorMsg = document.querySelector(".btn-subDiv p");
      
      let regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
      let passReg=   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,12}$/;
-
     
-     person.fname = fields[0].value;
-     person.lname = fields[1].value;
-     person.email = fields[2].value;
-     person.password = fields[3].value;
-     person.confirmPass = fields[4].value;
+     person.name = fields[0].value;
+     person.email = fields[1].value;
+     person.password = fields[2].value;
      person.type = select.value ;
 
+     let status, tag ;
 
-     
-     if(person.fname != "" && person.lname != "" && person.email != "" && person.password != "" && person.confirmPass != "" && person.type != ""){
+    for(let i =0; i < fields.length; i++){
+       if(fields[i].value == ""){
+         status =   showMessage(fields[i]);
+       }
+    }
 
+          
+
+    
+     if(!status){
+        if(person.name != ""){
+           let text = fields[0].parentElement.nextElementSibling;
+           text.style.display ="none";
+        }
+          
         //validates that the email is a valid email 
          if(!person.email.match(regex)){
             const mail =  document.getElementById("email");
             mail.style.borderColor = "red";
+            tag = mail.parentElement.nextElementSibling;
+            tag.innerHTML="Enter a valid email"
+            tag.style.display ="block";
+
+            
+
             return false;
+         }else{
+             mail =  document.getElementById("email");
+            clearStyle(mail);
          }
          
          //validates the inputed password
@@ -50,30 +65,24 @@ const validate = ()=> {
          if(!person.password.match(passReg)){
             const pass =  document.getElementById("pass");
             pass.style.borderColor = "red";
-            document.querySelector("#pass-erorr").classList.remove("hide");
             return false;
          }
 
-       console.log(person.password === person.confirmPass)
-         if(person.password != person.confirmPass){
-            confirmPass.style.borderColor ="red";
-            return false;
-         }
-
-
-           document.querySelector(".form").classList.add("hide");  
-           document.querySelector(".caption").classList.add("hide");
-           document.querySelector(".sucessMsg").classList.add("show");
-        return false;
      }
+
+
    
 
-    errorMsg.classList.remove("hide");
+
+     document.querySelector("form").innerHTML = "<img class=\"check\"  src=\"assets/check.png\" /> "
+
+   
+
+  
     // window.location = "index.html";
-   //  e.perventDefault();
+   // e.perventDefault();
   
 }
-
 
 
 
@@ -83,6 +92,23 @@ const validate = ()=> {
 document.querySelector("#btn-submit").addEventListener("click",function(e){
    validate(e);
 })
+
+//shows error message 
+function showMessage(elem){
+  let tag = elem.parentElement.nextElementSibling;
+  tag.style.display ="block";
+  return false;
+}
+
+//Clears the validation styles
+function clearStyle(elem){
+   console.log(elem)
+    let text = elem.parentElement.nextElementSibling;
+    elem.style.border = "solid 0.8px rgb(207, 206, 206)";
+    text.style.display ="none";
+
+    
+}
 
 
 
@@ -97,8 +123,4 @@ function   togglePassword(e) {
 togglePass.addEventListener('click', function(e){
      const input = e.currentTarget.previousElementSibling;
     togglePassword(input);
-});
-togglePass2.addEventListener('click', function(e){
-   const input = e.currentTarget.previousElementSibling;
-  togglePassword(input);
 });

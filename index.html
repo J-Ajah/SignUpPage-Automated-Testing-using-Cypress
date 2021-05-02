@@ -1,5 +1,4 @@
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,96 +6,73 @@
     <title>Signup Form</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
-
 <body>
 
     <div class="wrapper">
         <form action="">
-            <div class="signup-form">  
-                  
-                <div class="caption ">
-                    <h1> Sign up with us</h1>
-                    <p>Have an account?
-                        <a href="">sign in</a>
-                    </p>
-                </div>
-
-                <div class="form " >
-                    <div class="names">
-                        <div id="fname-div">
-                            <label for="">Firstname</label><br>
-                            <input type="text" id="fname" placeholder="" required>
-                        </div>
-                        <div id="lname-div">
-                            <label for="">Lastname</label><br>
-                            <input type="text" placeholder="">
-                        </div>
-                    </div>
+            <div class="caption ">
+                <h1> Sign up with us</h1>
+                <p>Have an account?
+                    <a href="">sign in</a>
+                </p>
+            </div>
 
 
+            <div class="container1">
+                <div class="name-container">
+                    <label for="">Name</label>
+                   <div class="name-div">
+                       <input type="text" name="name-input" id="name">
+                   </div>
+                   <p class="hidden">Field cannot be empty</p>
+                 </div>
 
-
-                    <div class="names">
-                        <div id="fname-div">
-                            <label for="">Account Type</label><br>
-                            <!-- <input type="text" id="fname" placeholder="" required> -->
-                            <select name="type" id="type">
-                                <option value="">Select type</option>
-                                <option value="admin">Admin</option>
-                                <option value="customer">Customer</option>
-                            </select>
-                        </div>
-
-                        <div class="emai-div">
-                            <label for="">Email</label><br>
-                            <input type="email"  id="email" placeholder="" required>
-                        </div>
-                        
-                    </div>
-
-
-                    <div class="confirm-pass-div">
-                        
-                        <div class="pass-word right">
-                            <label for="">Password</label><br>
-                            <input type="password"  id="pass" placeholder="" required>
-                            <i class="far fa-eye" id="togglePassword"></i>
-                            <p class="hide color" id="pass-erorr">Pasword must be of (6-12) length of characters, a number, 1 capital letter and a special character</p>
-                        </div>
-                        
-                        <div class="pass-word">
-                            <label for="">ConfirmPassword</label><br>
-                            <input type="password" id="confirmPass" placeholder="" required>
-                            <i class="far fa-eye" id="togglePassword2"></i>
-                            <br>
-                        </div>
-                       
-                       
-                    </div>
-
-                    <div class="btn-subDiv">
-                        <p class="color hide">Some fields are empty</p>
-                        <!-- type="button" -->
-                        <button type="button"  id="btn-submit">Submit</button>
-                    </div>
-                </div>
-
-
-                <div class="sucessMsg hide">
-                      <h1>
-                         <span>Form</span>  <br>
-    
-                          Submitted Sucessfully
-                      </h1>
-                </div>
+                 <div class="email-container">
+                    <label for="">Email</label>
+                   <div class="email-div">
+                       <input type="email" name="email" id="email">
+                   </div>
+                   <p class="hidden">Field cannot be empty</p>
+                 </div>
 
             </div>
+
+
+            <div class="container1">
+                <div class="select-container">
+                    <label for="">Select an Account type</label>
+                   <div class="select-div">
+                       <select name="select-option" id="type">
+                           <option value="customer">Customer</option>
+                           <option value="admin">Admin</option>
+                       </select>
+                      
+                   </div>
+                 </div>
+
+                 <div class="pass-container">
+                    <label for="">Password</label>
+                   <div class="pass-div">
+                       <input type="password" name="password" id="pass" au>
+                       <i class="far fa-eye" id="togglePassword"></i>
+                   </div>
+                   <p class="">Pasword must be of (6-12) length of characters, a number, 1 capital letter and a special character</p>
+                 </div>
+
+            </div>
+
+            <div class="btn-div">
+                  <button  type="button" id="btn-submit">Submit</button>
+            </div>
+     
+    
+
         </form>
     </div>
 
-
-  <script src="js/index.js" ></script>
+    <script src="js/index.js" ></script>
+    
 </body>
-
 </html>
