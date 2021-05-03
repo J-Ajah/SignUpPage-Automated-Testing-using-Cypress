@@ -49,6 +49,7 @@ context('Validation of sign up form', () => {
         it.only("A default account of customer should be selected unless otherwise",()=>{
             cy.get('#name').type("Justice");
             cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get("#pass").should('have.attr','type','text')
             cy.get('#pass').type("qwertY.899");
             cy.get('#btn-submit').click();
         })
