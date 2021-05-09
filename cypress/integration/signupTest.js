@@ -13,15 +13,21 @@ context('Validation of sign up form', () => {
             cy.get('#email').type("justice.ajah@amiltech.org")
             cy.get('#type').select("Admin");
             cy.get('#pass').type("qwertY.899");
-            cy.get('#btn-submit').click()
+            cy.get('#type').select("Admin").should("have.value","admin")
+            cy.get('#btn-submit').click();
+            cy.get('[class="check"]').should("be.visible")
         })
 
         it.only("Sucessful submission of form for customers",()=>{
             cy.get('#name').type("Justice");
             cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get('#email').should("have.value","justice.ajah@amiltech.org")
             cy.get('#type').select("Customer");
+            cy.get('#type').select("Customer").should("have.value","customer")
             cy.get('#pass').type("qwertY.899");
-            cy.get('#btn-submit').click()
+            cy.get('#btn-submit').click();
+            cy.get('[class="check"]').should("be.visible");
+
         })
     });
 
@@ -30,6 +36,8 @@ context('Validation of sign up form', () => {
     describe("Negative Scenarios", ()=>{ 
         it.only("Should not submit when all fields are left empty",()=>{
             cy.get('#btn-submit').click();
+            cy.get('form').should("not.contain","check");
+
         });
         
         it.only("Should not submit when the name field is empty",()=>{
@@ -37,19 +45,25 @@ context('Validation of sign up form', () => {
             cy.get('#type').select("Admin");
             cy.get('#pass').type("qwertY.899");
             cy.get('#btn-submit').click();
-        })
+            cy.get('form').should("not.contain","check");
+
+
+        });
 
         it.only("Should not submit when the email field is empty",()=>{
             cy.get('#name').type("Justice");
             cy.get('#type').select("Admin");
             cy.get('#pass').type("qwertY.899");
             cy.get('#btn-submit').click();
+            cy.get('form').should("not.contain","check");
+
+            
         })
 
         it.only("A default account of customer should be selected unless otherwise",()=>{
             cy.get('#name').type("Justice");
             cy.get('#email').type("justice.ajah@amiltech.org")
-            cy.get("#pass").should('have.attr','type','text')
+            cy.get("#pass").should('have.attr','type','password')
             cy.get('#pass').type("qwertY.899");
             cy.get('#btn-submit').click();
         })
@@ -59,6 +73,8 @@ context('Validation of sign up form', () => {
             cy.get('#email').type("justice.ajah@amiltech.org")
             cy.get('#type').select("Admin");
             cy.get('#btn-submit').click();
+            cy.get('form').should("not.contain","check");
+
         })
 
 
@@ -68,9 +84,6 @@ context('Validation of sign up form', () => {
             cy.get('#togglePassword').click();
             cy.get("#pass").should('have.attr','type','text')
             cy.wait(2000)
-
-
-           
         })
 
         it.only("Password should hide when the eye icon is clicked",()=>{
@@ -89,16 +102,20 @@ context('Validation of sign up form', () => {
             cy.get('#type').select("Admin");
             cy.get('#pass').type("qwertY.899");
             cy.get('#btn-submit').click();  
+            cy.get('form').should("not.contain","check");
+
         });
 
 
-        it.only("Should show an error message when a wrong email is inserted",()=>{
+        it.only("Should show an error message when a wrong email is inputed",()=>{
             cy.get('#name').type("Justice");
             cy.get('#email').type("justice.ajahamiltech.org")
             cy.get('#type').select("Admin");
             cy.get('#pass').type("qwertY.899");
             cy.get('#btn-submit').click();  
             cy.get('.email-container > .hidden').should("have.text","Enter a valid email");
+            cy.get('form').should("not.contain","check");
+
         });
        
       
@@ -110,6 +127,7 @@ context('Validation of sign up form', () => {
             cy.get('#pass').type("qwert.899");
             cy.get('#btn-submit').click();  
             cy.get('.pass-container > p').contains("6-12");
+            cy.get('.pass-container > p').should("be.visible")
         });
 
           //email requirements
@@ -123,7 +141,7 @@ context('Validation of sign up form', () => {
 
         it.only("Should submit when password characters is is between 6-12",()=>{
             cy.get('#name').type("Justice");
-            cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get('#email').type("justice.ajah@amiltech.org");
             cy.get('#type').select("Admin");
             cy.get('#pass').type("qY/e1lll1");
             cy.get('#btn-submit').click();  
@@ -152,7 +170,29 @@ context('Validation of sign up form', () => {
             cy.get('#pass').type("qY/e1lll12eve");
             cy.get('#btn-submit').click();  
         });
+
+        it.only("Should not submit when the username is less than 2 characters",()=>{
+            cy.get('#name').type("J");
+            cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get('#type').select("Admin");
+            cy.get('#pass').type("qwertY.899");
+            cy.get('#type').select("Admin").should("have.value","admin")
+            cy.get('#btn-submit').click();
+            cy.get('form').should("not.contain","check");
+        })
+
+        it.only("Should not submit when the username is greater than 10 characters",()=>{
+            cy.get('#name').type("Justice Ajah");
+            cy.get('#email').type("justice.ajah@amiltech.org")
+            cy.get('#type').select("Admin");
+            cy.get('#pass').type("qwertY.899");
+            cy.get('#type').select("Admin").should("have.value","admin")
+            cy.get('#btn-submit').click();
+            cy.get('form').should("not.contain","check");
+        })
     });
+
+
     
 
 

@@ -29,6 +29,9 @@ const validate = ()=> {
 
      let status, tag ;
 
+     //gets the password field
+     const pass =  document.getElementById("pass");
+
     for(let i =0; i < fields.length; i++){
        if(fields[i].value == ""){
          status =   showMessage(fields[i]);
@@ -40,9 +43,18 @@ const validate = ()=> {
     
      if(!status){
         if(person.name != ""){
-           let text = fields[0].parentElement.nextElementSibling;
-           text.style.display ="none";
-           fields[0].style.border = "solid 0.8px rgb(207, 206, 206)";
+         //   debugger
+           if(person.name.length < 2 || person.name.length > 10){
+             nameError =  document.getElementById("nameError");
+             nameError.innerText = "username should be more than 1 character and a maximum of 10 characters";
+             nameError.style.display ="block";
+             return false
+           }else{
+            let text = fields[0].parentElement.nextElementSibling;
+            text.style.display ="none";
+            fields[0].style.border = "solid 0.8px rgb(207, 206, 206)";
+           }
+          
         }
         else{
            return false;
@@ -67,9 +79,10 @@ const validate = ()=> {
          //validates the inputed password
          //must contain a special character, a number and a capital letter
          if(!person.password.match(passReg)){
-            const pass =  document.getElementById("pass");
             pass.style.borderColor = "red";
             return false;
+         }else{
+            pass.style.borderColor = "";
          }
 
      }
